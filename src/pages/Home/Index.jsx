@@ -15,7 +15,7 @@ const Index = () => {
     <div>
 
     
-         <SubHeading title={'Main Menu'} />
+         <SubHeading title={'Dashboard'} />
          
         <div class="flex items-center justify-center flex-col md:flex-row gap-4">
                 <LinkButton url={'/Menu'} buttonName={'Punching Department'}   icon={<FaComputer size={30} />}  />
