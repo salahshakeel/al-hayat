@@ -9,7 +9,7 @@ const Header = () => {
         className="w-20 h-auto max-w-xl rounded-lg mb-4 md:mb-0 md:mr-4"
         alt="Al Hayyat Embroidery Logo"
       />
-      <TextComponent title={'Al Hayyat Embroidery'} />
+      <TextComponent title={'Al Hayat Embroidery'} />
     </div>
   );
 }

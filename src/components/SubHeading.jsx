@@ -1,10 +1,17 @@
 
 
 import React from 'react'
+import SubNavbar2 from './SubNavbar2'
 
 const SubHeading = ({title}) => {
   return (
-    <h2 class="text-4xl font-bold dark:text-white mb-10 mt-5">{title || 'Title'}</h2>
+    <div class="flex justify-center items-center mb-4">
+    <div>
+    <h2 class="text-4xl font-bold dark:text-white mb-4">{title || 'Title'}</h2>
+    <SubNavbar2/>
+    </div>
+    </div>
+    
 
   )
 }

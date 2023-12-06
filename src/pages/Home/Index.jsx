@@ -9,14 +9,18 @@ import { MdIncompleteCircle } from "react-icons/md";
 import { FaStore } from "react-icons/fa";
 import { IoIosExit } from "react-icons/io";
 import { BiSolidPurchaseTag } from "react-icons/bi";
+import { FaComputer } from "react-icons/fa6";
 const Index = () => {
   return (
     <div>
-         <SubHeading title={'Main Menu'} />
-        <div class="flex items-center justify-center flex-col md:flex-row gap-4">
-                <LinkButton url={'/Menu'} buttonName={'Punching Department'}   icon={<GiSewingMachine size={30} />}  />
 
-                <LinkButton buttonName={'Cutting Department'} url={'/Cutting'} icon={<FaCut size={30} />} />
+    
+         <SubHeading title={'Main Menu'} />
+         
+        <div class="flex items-center justify-center flex-col md:flex-row gap-4">
+                <LinkButton url={'/Menu'} buttonName={'Punching Department'}   icon={<FaComputer size={30} />}  />
+
+                <LinkButton buttonName={'Cutting Department'} url={'/Cutting'} icon={<img src="/Images/thread_cut_image.jpg" alt="cutting" width={30} height={30} />} />
 
                 <LinkButton buttonName={'Production Department'} icon={<GiSewingMachine size={30} />} />
 
