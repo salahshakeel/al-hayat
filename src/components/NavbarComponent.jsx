@@ -1,15 +1,18 @@
 'use client';
 
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 
 const NavbarComponent = () => {
     return (
         <Navbar fluid rounded>
-          <Navbar.Brand href="">
+          <Link to="/">
+          <Navbar.Brand >
             <img src="/Images/logo.png" className="mr-3 h-6 sm:h-9" alt="Logo" />
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">AL HAYAT EMBORIDERY</span>
           </Navbar.Brand>
+          </Link>
           <div className="flex md:order-2">
             <Dropdown
               arrowIcon={false}

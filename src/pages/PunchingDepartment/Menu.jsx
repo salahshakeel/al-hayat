@@ -13,9 +13,9 @@ const Menu = () => {
         <div class="flex items-center justify-center flex-col md:flex-row gap-4">
 
             
-                    <LinkButton buttonName={'Sampling Department'} url={'/Menu/Sampling'}  />
+                    <LinkButton buttonName={'Sampling Department'} url={'/Punching/Sampling'}  />
     
-                    <LinkButton buttonName={'Production Department'} url={'/Menu/Production'} />
+                    <LinkButton buttonName={'Production Department'} url={'/Punching/Production'} />
 
                  
                   

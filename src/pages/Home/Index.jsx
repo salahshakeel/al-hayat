@@ -18,7 +18,7 @@ const Index = () => {
          <SubHeading title={'Dashboard'} />
          
         <div class="flex items-center justify-center flex-col md:flex-row gap-4">
-                <LinkButton url={'/Menu'} buttonName={'Punching Department'}   icon={<FaComputer size={30} />}  />
+                <LinkButton url={'/Punching'} buttonName={'Punching Department'}   icon={<FaComputer size={30} />}  />
 
                 <LinkButton buttonName={'Cutting Department'} url={'/Cutting'} icon={<img src="/Images/thread_cut_image.jpg" alt="cutting" width={30} height={30} />} />
 

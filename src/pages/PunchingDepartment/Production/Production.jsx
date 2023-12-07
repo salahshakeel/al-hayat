@@ -13,7 +13,7 @@ const Production = () => {
     <div className="flex flex-wrap justify-center gap-4 p-4">
       
       {[1, 2, 3, 4].map((index) => (
-       <Card url={'/Menu/Production/Article'} key={index} value={"B#000"+index}/>
+       <Card url={'/Punching/Production/Article'} key={index} value={"B#000"+index}/>
       ))}
     </div>
 

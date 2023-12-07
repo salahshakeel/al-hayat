@@ -38,11 +38,11 @@ function App() {
                 <Route  path='/' exact element={<Index />} />
                 <Route  path='/Cutting'  element={<Cutting />} />
                 <Route  path='/Cutting/Article'  element={<CuttingArticle />} />
-                <Route  path='/Menu'  element={<Menu />} />
-                <Route  path='/Menu/Sampling'  element={<Sampling />} />
-                <Route  path='/Menu/Production'  element={<Production />} />
-                <Route  path='/Menu/Sampling/Article'  element={<SamplingArticle />} />
-                <Route  path='/Menu/Production/Article'  element={<ProductionArticle />} />
+                <Route  path='/Punching'  element={<Menu />} />
+                <Route  path='/Punching/Sampling'  element={<Sampling />} />
+                <Route  path='/Punching/Production'  element={<Production />} />
+                <Route  path='/Punching/Sampling/Article'  element={<SamplingArticle />} />
+                <Route  path='/Punching/Production/Article'  element={<ProductionArticle />} />
                 
             </Routes>  
          
