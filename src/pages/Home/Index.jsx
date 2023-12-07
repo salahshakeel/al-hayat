@@ -28,7 +28,7 @@ const Index = () => {
           icon={<img src="/Images/thread_cut_image.jpg" alt="cutting" width={30} height={30} />}
         />
 
-        <LinkButton buttonName={'Production Department'} icon={<GiSewingMachine size={30} />} />
+        <LinkButton url={'/Production'} buttonName={'Production Department'} icon={<GiSewingMachine size={30} />} />
 
         <LinkButton buttonName={'Cropping Department'} icon={<CiCrop size={30} />} />
       </div>
