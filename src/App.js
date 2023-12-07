@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Index from "./pages/Home/Index";
+import ProductionIndex from "./pages/ProductionDepartment/Index";
 import Menu from "./pages/PunchingDepartment/Menu";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
@@ -26,10 +27,15 @@ function App() {
                 <Route path="/" exact element={<Index />} />
                 <Route path="/Cutting" element={<Cutting />} />
                 <Route path="/Cutting/Article" element={<CuttingArticle />} />
-                <Route path="/Cutting/Article/Id" element={<CuttingArticleId />} />
+                <Route
+                  path="/Cutting/Article/Id"
+                  element={<CuttingArticleId />}
+                />
                 <Route path="/Punching" element={<Menu />} />
                 <Route path="/Punching/Sampling" element={<Sampling />} />
                 <Route path="/Punching/Production" element={<Production />} />
+
+                <Route path="/Production" element={<ProductionIndex />} />
                 <Route
                   path="/Punching/Sampling/Article"
                   element={<SamplingArticle />}
