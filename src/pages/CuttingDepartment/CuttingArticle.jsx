@@ -11,7 +11,7 @@ const CuttingArticle = () => {
         <div className="flex flex-wrap justify-center gap-4 p-4">
       
       {[1, 2].map((index) => (
-       <Card  key={index} value={"B#000"+index}/>
+       <Card  key={index}  url={'/Cutting/Article/Id'} value={"B#000"+index}/>
       ))}
     </div>
     </div>
