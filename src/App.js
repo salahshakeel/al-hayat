@@ -22,7 +22,7 @@ function App() {
 
         <div className="">
           <section class="bg-gray-100 dark:bg-gray-900 h-screen">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center text-gray-900 dark:text-white lg:py-16">
               <Routes>
                 <Route path="/" exact element={<Index />} />
                 <Route path="/Cutting" element={<Cutting />} />
