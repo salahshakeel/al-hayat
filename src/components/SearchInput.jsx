@@ -2,6 +2,7 @@
 
 import React from 'react'
 
+
 const SearchInput = () => {
   return (
     <div className='mb-8 w-96 mx-auto'>

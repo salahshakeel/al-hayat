@@ -12,7 +12,7 @@ const Cutting = () => {
 
         <SearchInput/>
 
-        <div className="flex flex-wrap justify-center gap-4 p-4">
+        <div className="flex gap-2 gird grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
       
       {[1, 2, 3, 4].map((index) => (
        <Card url={'/Cutting/Article'} key={index} value={"B#000"+index}/>
