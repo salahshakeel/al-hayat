@@ -23,6 +23,7 @@ const NavbarComponent = () => {
             >
              
              <Dropdown.Item>Profile</Dropdown.Item>
+             <Dropdown.Item>Dark/Light Mode</Dropdown.Item>
               <Dropdown.Item>Sign out</Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
