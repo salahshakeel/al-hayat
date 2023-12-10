@@ -14,6 +14,8 @@ import CuttingArticle from "./pages/CuttingDepartment/CuttingArticle";
 import SubNavbar from "./components/SubNavbar";
 import NavbarComponent from "./components/NavbarComponent";
 import CuttingArticleId from "./pages/CuttingDepartment/CuttingArticleId";
+import Cropping from "./pages/CroppingDepartment/Cropping";
+import Finishing from "./pages/FinishingDepartment/Finishing";
 function App() {
   return (
     <div className="App">
@@ -34,6 +36,8 @@ function App() {
                 <Route path="/Punching" element={<Menu />} />
                 <Route path="/Punching/Sampling" element={<Sampling />} />
                 <Route path="/Punching/Production" element={<Production />} />
+                <Route path="/Cropping" element={<Cropping />} />
+                <Route path="/Finishing" element={<Finishing />} />
 
                 <Route path="/Production" element={<ProductionIndex />} />
                 <Route

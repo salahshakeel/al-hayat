@@ -30,11 +30,11 @@ const Index = () => {
 
         <LinkButton url={'/Production'} buttonName={'Production Department'} icon={<GiSewingMachine size={30} />} />
 
-        <LinkButton buttonName={'Cropping Department'} icon={<CiCrop size={30} />} />
+        <LinkButton buttonName={'Cropping Department'} url={'/Cropping'} icon={<CiCrop size={30} />} />
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-5">
-        <LinkButton buttonName={'Finishing Department'} icon={<MdIncompleteCircle size={30} />} />
+        <LinkButton buttonName={'Finishing Department'} url={'/Finishing'} icon={<MdIncompleteCircle size={30} />} />
 
         <LinkButton buttonName={'Market Department'} icon={<FaStore size={30} />} />
 
