@@ -2,9 +2,23 @@
   text-align: center;
 }
 
+:root {
+  --background-color: #F3F4F6; /* Light mode background color */
+  --text-color: #000000; /* Light mode text color */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+body {
+  background-color: #F3F4F6;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,7 +28,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #F3F4F6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,3 +50,4 @@
     transform: rotate(360deg);
   }
 }
+

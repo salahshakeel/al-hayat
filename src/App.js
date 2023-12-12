@@ -1,4 +1,5 @@
 import logo from "./logo.svg";
+import { useEffect } from "react";
 import "./App.css";
 import Index from "./pages/Home/Index";
 import ProductionIndex from "./pages/ProductionDepartment/Index";
@@ -17,6 +18,13 @@ import CuttingArticleId from "./pages/CuttingDepartment/CuttingArticleId";
 import Cropping from "./pages/CroppingDepartment/Cropping";
 import Finishing from "./pages/FinishingDepartment/Finishing";
 function App() {
+  useEffect(() => {
+    // Force light mode
+    document.body.style.backgroundColor = "#F3F4F6";
+    document.body.style.color = "black";
+    // Add more styles as needed
+  }, []); // Run this effect only once when the component mounts
+
   return (
     <div className="App">
       <Router>
