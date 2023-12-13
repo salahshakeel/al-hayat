@@ -64,6 +64,39 @@ const customTheme = {
   
 };
 
+
+const AccordionTheme = {
+  "root": {
+    "base": "divide-y divide-gray-200 border-gray-200 dark:divide-gray-700 dark:border-gray-700",
+    "flush": {
+      "off": "rounded-lg border",
+      "on": "border-b"
+    }
+  },
+  "content": {
+    "base": "py-5 px-5 last:rounded-b-lg dark:bg-gray-900 first:rounded-t-lg"
+  },
+  "title": {
+    "arrow": {
+      "base": "h-6 w-6 shrink-0",
+      "open": {
+        "off": "",
+        "on": "rotate-180"
+      }
+    },
+    "base": "flex w-full items-center justify-between first:rounded-t-lg last:rounded-b-lg py-5 px-5 text-left font-medium text-gray-500 dark:text-gray-400",
+    "flush": {
+      "off": "hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-800 dark:focus:ring-gray-800",
+      "on": "bg-transparent dark:bg-transparent"
+    },
+    "heading": "",
+    "open": {
+      "off": "",
+      "on": "text-gray-900 bg-gray-100 dark:bg-gray-800 dark:text-white"
+    }
+  }
+};
+
 function Index() {
   return (
     <div>
@@ -79,11 +112,11 @@ function Index() {
 
 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 {[1, 2, 3, 4, 5].map((index) => (
-<Accordion key={index}  className="w-full dark:bg-gray-400 dark:text-black">
-  <Accordion.Panel>
-    <Accordion.Title>{"M#" + index}</Accordion.Title>
-    <Accordion.Content>
-    <h2 class="text-md font-bold dark:text-white mb-4">24 Head</h2>
+<Accordion key={index}  className="w-full " >
+  <Accordion.Panel className='dark:bg-gray-300'>
+    <Accordion.Title className='dark:bg-gray-300 dark:focus:ring-0 dark:text-black dark:hover:bg-gray-300 dark:border-none'>{"M#" + index}</Accordion.Title>
+    <Accordion.Content className='dark:bg-gray-300  '>
+    <h2 class="text-md font-bold  mb-4 dark:text-black">24 Head</h2>
     <Table>
          
          <Table.Head>
@@ -96,8 +129,8 @@ function Index() {
          <Table.Body className="divide-y">
            <Table.Row className="bg-white dark:border-gray-200 dark:text-black dark:bg-gray-300">
              
-             <Table.Cell>5000</Table.Cell>
-             <Table.Cell>2</Table.Cell>
+             <Table.Cell className='dark:text-black dark:bg-gray-200'>5000</Table.Cell>
+             <Table.Cell className='dark:text-black dark:bg-gray-200'>2</Table.Cell>
              
              
            </Table.Row>
@@ -119,16 +152,15 @@ function Index() {
  
  
  
-
       <h2 class="text-4xl font-bold dark:text-black mb-4">Department B</h2>
 
 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 {[1, 2, 3, 4, 5].map((index) => (
-<Accordion key={index}  className="w-full dark:bg-gray-400 dark:text-black">
-  <Accordion.Panel>
-    <Accordion.Title>{"M#" + index}</Accordion.Title>
-    <Accordion.Content>
-    <h2 class="text-md font-bold dark:text-white mb-4">24 Head</h2>
+<Accordion key={index}  className="w-full " >
+  <Accordion.Panel className='dark:bg-gray-300'>
+    <Accordion.Title className='dark:bg-gray-300 dark:focus:ring-0 dark:text-black dark:hover:bg-gray-300 dark:border-none'>{"M#" + index}</Accordion.Title>
+    <Accordion.Content className='dark:bg-gray-300  '>
+    <h2 class="text-md font-bold  mb-4 dark:text-black">24 Head</h2>
     <Table>
          
          <Table.Head>
@@ -141,8 +173,8 @@ function Index() {
          <Table.Body className="divide-y">
            <Table.Row className="bg-white dark:border-gray-200 dark:text-black dark:bg-gray-300">
              
-             <Table.Cell>5000</Table.Cell>
-             <Table.Cell>2</Table.Cell>
+             <Table.Cell className='dark:text-black dark:bg-gray-200'>5000</Table.Cell>
+             <Table.Cell className='dark:text-black dark:bg-gray-200'>2</Table.Cell>
              
              
            </Table.Row>
