@@ -10,7 +10,10 @@ const Cutting = () => {
     <div>
         <SubHeading title={'Cutting'} />
 
+        <div className='flex justify-center'>
         <SearchInput/>
+        </div>
+        
 
         <div className="flex gap-2 gird grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
       

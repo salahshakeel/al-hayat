@@ -2,7 +2,7 @@ import React from 'react'
 import SubHeading from '../../components/SubHeading'
 import Card from '../../components/Card'
 import { Tabs,TextInput,Button,Table } from 'flowbite-react';
-
+import SearchInput from '../../components/SearchInput';
 function Finishing() {
   return (
     <div>
@@ -11,10 +11,9 @@ function Finishing() {
 
 
 
-    <div className='flex items-center pb-4 justify-end'>
-<TextInput className='pr-4' id="email2" type="text" placeholder="Search" required shadow />
-<Button type="submit">Search</Button>
-</div>
+    <div className='flex justify-end'>
+  <SearchInput/>
+    </div>
 
     <Table>
  
@@ -52,16 +51,16 @@ function Finishing() {
  <Table.Body className="divide-y">
    <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
      
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Cotton</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">1</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">G</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Yes</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Yes</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Yes</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white bg-gray-300">Yes</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">1</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Yes</Table.Cell>
-     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">10</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">Cotton</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">1</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">G</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">Yes</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">Yes</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">Yes</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black bg-gray-300 dark:bg-gray-200">Yes</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">1</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">Yes</Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">10</Table.Cell>
      
    </Table.Row>
  

@@ -11,8 +11,10 @@ import { Table ,TextInput,Button} from 'flowbite-react';
 import { Tabs } from 'flowbite-react';
 import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
 import { MdDashboard } from 'react-icons/md';
+import SearchInput from '../../components/SearchInput'
 
 import { CustomFlowbiteTheme } from 'flowbite-react';
+
 
 const customTheme = {
   
@@ -89,9 +91,8 @@ function CuttingArticleId() {
 <h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
 
 
-<div className='flex items-center pb-4 justify-end'>
-    <TextInput className='pr-4 dark:text-black dark:bg-white' id="email2" type="text" placeholder="Search" required shadow />
-    <Button type="submit">Search</Button>
+<div className='flex justify-end'>
+<SearchInput/>
 </div>
   <Table className=' dark:text-black'>
  
@@ -118,12 +119,11 @@ function CuttingArticleId() {
       <Tabs.Item title="Deying" icon={IoIosColorFill}>
       <div className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">Deying</h2>
 
 
-<div className='flex items-center pb-4 justify-end'>
-    <TextInput className='pr-4 dark:text-black dark:bg-white' id="email2" type="text" placeholder="Search" required shadow />
-    <Button type="submit">Search</Button>
+<div className='flex justify-end'>
+<SearchInput/>
 </div>
   <Table className=' dark:text-black'>
  
@@ -150,12 +150,11 @@ function CuttingArticleId() {
       <Tabs.Item title="Cutting" icon={FaCut}>
       <div className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">Cutting</h2>
 
 
-<div className='flex items-center pb-4 justify-end'>
-    <TextInput className='pr-4 dark:text-black dark:bg-white' id="email2" type="text" placeholder="Search" required shadow />
-    <Button type="submit">Search</Button>
+<div className='flex justify-end'>
+<SearchInput/>
 </div>
   <Table className=' dark:text-black'>
  
@@ -182,12 +181,11 @@ function CuttingArticleId() {
       <Tabs.Item title="ShortFall" icon={FaArrowDownShortWide}>
       <div className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">ShortFall</h2>
 
 
-<div className='flex items-center pb-4 justify-end'>
-    <TextInput className='pr-4 dark:text-black dark:bg-white' id="email2" type="text" placeholder="Search" required shadow />
-    <Button type="submit">Search</Button>
+<div className='flex justify-end'>
+<SearchInput/>
 </div>
   <Table className=' dark:text-black'>
  
@@ -214,12 +212,11 @@ function CuttingArticleId() {
       <Tabs.Item title="Extra" icon={CiCirclePlus}>
       <div className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">Extra</h2>
 
 
-<div className='flex items-center pb-4 justify-end'>
-    <TextInput className='pr-4 dark:text-black dark:bg-white' id="email2" type="text" placeholder="Search" required shadow />
-    <Button type="submit">Search</Button>
+<div className='flex justify-end'>
+<SearchInput/>
 </div>
   <Table className=' dark:text-black'>
  
