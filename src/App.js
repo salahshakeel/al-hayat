@@ -17,11 +17,13 @@ import NavbarComponent from "./components/NavbarComponent";
 import CuttingArticleId from "./pages/CuttingDepartment/CuttingArticleId";
 import Cropping from "./pages/CroppingDepartment/Cropping";
 import Finishing from "./pages/FinishingDepartment/Finishing";
+import { setTheme } from "flowbite-react/lib/esm/theme-store";
 function App() {
   useEffect(() => {
     // Force light mode
     document.body.style.backgroundColor = "#F3F4F6";
     document.body.style.color = "black";
+    setTheme("light");
     // Add more styles as needed
   }, []); // Run this effect only once when the component mounts
 
@@ -31,8 +33,8 @@ function App() {
         <NavbarComponent />
 
         <div className="">
-          <section class="bg-gray-100 dark:bg-gray-900 h-screen">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center text-gray-900 dark:text-white lg:py-16">
+          <section class="bg-gray-100 dark:bg-gray-100 h-screen">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center text-gray-900 dark:text-black lg:py-16">
               <Routes>
                 <Route path="/" exact element={<Index />} />
                 <Route path="/Cutting" element={<Cutting />} />

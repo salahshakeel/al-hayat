@@ -19,28 +19,27 @@ const Index = () => {
         <LinkButton
           url={'/Punching'}
           buttonName={'Punching Department'}
-          icon={<FaComputer size={30} />}
+          icon={<img src="/Images/punching.png" alt="punching" width={50} height={50} />}
         />
 
         <LinkButton
           buttonName={'Cutting Department'}
           url={'/Cutting'}
-          icon={<img src="/Images/thread_cut_image.jpg" alt="cutting" width={30} height={30} />}
+          icon={<img src="/Images/cutting.png" alt="cutting" width={50} height={50} />}
         />
+        <LinkButton url={'/Production'} buttonName={'Production Department'} icon={<img src="/Images/production.png" alt="production" width={50} height={50} />} />
 
-        <LinkButton url={'/Production'} buttonName={'Production Department'} icon={<GiSewingMachine size={30} />} />
-
-        <LinkButton buttonName={'Cropping Department'} url={'/Cropping'} icon={<CiCrop size={30} />} />
+        <LinkButton buttonName={'Cropping Department'} url={'/Cropping'} icon={<img src="/Images/cropping.png" alt="cropping" width={50} height={50} />} />
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-5">
-        <LinkButton buttonName={'Finishing Department'} url={'/Finishing'} icon={<MdIncompleteCircle size={30} />} />
+        <LinkButton buttonName={'Finishing Department'} url={'/Finishing'} icon={<img src="/Images/finishing.png" alt="finishing" width={50} height={50} />} />
 
-        <LinkButton buttonName={'Market Department'} icon={<FaStore size={30} />} />
+        <LinkButton buttonName={'Market Department'} icon={<img src="/Images/market.png" alt="market" width={50} height={50} />} />
 
-        <LinkButton buttonName={'Percuiment Department'} icon={<BiSolidPurchaseTag size={30} />} />
+        <LinkButton buttonName={'Percuiment Department'} icon={<img src="/Images/procurement.png" alt="percuiment" width={50} height={50} />} />
 
-        <LinkButton buttonName={'Gate Exit Department'} icon={<IoIosExit size={30} />} />
+        <LinkButton buttonName={'Gate Exit Department'} icon={<img src="/Images/exit.png" alt="exit" width={50} height={50} />} />
       </div>
     </div>
   );

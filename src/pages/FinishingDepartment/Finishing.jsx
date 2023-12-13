@@ -19,11 +19,11 @@ function Finishing() {
     <Table>
  
  <Table.Head>
-   <Table.HeadCell>B#4223</Table.HeadCell>
-   <Table.HeadCell>D#3243</Table.HeadCell>
-   <Table.HeadCell>Qalamkar</Table.HeadCell>
-   <Table.HeadCell>Lot:505</Table.HeadCell>
-   <Table.HeadCell>Golden</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>B#4223</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>D#3243</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Qalamkar</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Lot:505</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Golden</Table.HeadCell>
  </Table.Head>
 </Table>
 
@@ -36,21 +36,21 @@ function Finishing() {
 <Table>
  
  <Table.Head>
-   <Table.HeadCell>Fabric</Table.HeadCell>
-   <Table.HeadCell>S.no</Table.HeadCell>
-   <Table.HeadCell>Articles</Table.HeadCell>
-   <Table.HeadCell>PR Suit</Table.HeadCell>
-   <Table.HeadCell>Stiches</Table.HeadCell>
-   <Table.HeadCell>head</Table.HeadCell>
-   <Table.HeadCell>ROund Final</Table.HeadCell>
-   <Table.HeadCell>Quantity</Table.HeadCell>
-   <Table.HeadCell>T.Stitch</Table.HeadCell>
-   <Table.HeadCell>Days</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Fabric</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>S.no</Table.HeadCell> 
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Articles</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>PR Suit</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Stiches</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>head</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>ROund Final</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Quantity</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>T.Stitch</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Days</Table.HeadCell>
 
  
  </Table.Head>
  <Table.Body className="divide-y">
-   <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+   <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
      
      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Cotton</Table.Cell>
      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">1</Table.Cell>

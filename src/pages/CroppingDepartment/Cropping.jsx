@@ -34,17 +34,17 @@ function Cropping() {
   <Table>
  
     <Table.Head>
-      <Table.HeadCell>Date</Table.HeadCell>
-      <Table.HeadCell>BarCode Design</Table.HeadCell>
-      <Table.HeadCell>Quantity</Table.HeadCell>
-      <Table.HeadCell>Round</Table.HeadCell>
-      <Table.HeadCell>Rate</Table.HeadCell>
-      <Table.HeadCell>Status</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Date</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>BarCode Design</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Quantity</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Round</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Rate</Table.HeadCell>
+      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Status</Table.HeadCell>
 
     
     </Table.Head>
     <Table.Body className="divide-y">
-      <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+      <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
         
         <Table.Cell>Sliver</Table.Cell>
         <Table.Cell>Laptop</Table.Cell>
