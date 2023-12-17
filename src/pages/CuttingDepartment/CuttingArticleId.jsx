@@ -1,19 +1,20 @@
-import React from 'react'
+import React,{useState} from 'react'
 import SubHeading from '../../components/SubHeading'
 import Card from '../../components/Card'
 import LinkButton from '../../components/LinkButton'
 import { CiCirclePlus } from "react-icons/ci";
 import { FaCut } from "react-icons/fa";
 import { CiShop } from "react-icons/ci";
-import { IoIosColorFill } from "react-icons/io";
+
 import { FaArrowDownShortWide } from "react-icons/fa6";
 import { Table ,TextInput,Button} from 'flowbite-react';
 import { Tabs } from 'flowbite-react';
 import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
+import { IoIosAdd, IoIosColorFill, IoIosRemove } from 'react-icons/io';
 import { MdDashboard } from 'react-icons/md';
 import SearchInput from '../../components/SearchInput'
+import Spreadsheet from 'react-spreadsheet';
 
-import { CustomFlowbiteTheme } from 'flowbite-react';
 
 
 const customTheme = {
@@ -75,7 +76,37 @@ const customTheme = {
   
 };
 
+
+
 function CuttingArticleId() {
+
+
+  const [data, setData] = useState([
+    [{ value: 'A1' }, { value: 'B1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }],
+    [{ value: 'A2' }, { value: 'B2' }, { value: 'C2' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }],
+    // Add more rows as needed
+  ]);
+  
+  const removeRow = () => {
+    if (data.length > 0) {
+      const newData = [...data];
+      newData.pop(); // Remove the last row
+      setData(newData);
+    }
+  };
+  
+  const addRow = () => {
+    const numColumns = data[0].length; // Get the number of columns from the first row
+    const newEmptyRow = Array.from({ length: numColumns }, () => ({ value: '' }));
+    const newData = [...data, newEmptyRow];
+    setData(newData);
+  };
+  
+  const handleChange = (changes) => {
+    setData(changes);
+    console.log(changes);
+  };
+
   return (
     <div>
         <SubHeading title={'Cutting B#0001'} />
@@ -91,29 +122,22 @@ function CuttingArticleId() {
 <h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
 
 
-<div className='flex justify-end'>
+<div className='flex justify-center'>
 <SearchInput/>
-</div>
-  <Table className=' dark:text-black'>
- 
-    <Table.Head>
-      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Date</Table.HeadCell>
-      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Fabric</Table.HeadCell>
-      <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Meter</Table.HeadCell>
 
-    
-    </Table.Head>
-    <Table.Body className="divide-y">
-      <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300">
-        
-        <Table.Cell>Sliver</Table.Cell>
-        <Table.Cell>Laptop</Table.Cell>
-        <Table.Cell>$2999</Table.Cell>
-        
-      </Table.Row>
-    
-    </Table.Body>
-  </Table>
+</div>
+
+<Spreadsheet
+  data={data}
+  onChange={handleChange}
+  columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
+/>
+<div className='flex justify-start'>
+<button onClick={addRow} className='mt-2 bg-blue-500 hover:bg-blue-700 text-white rounded mr-1 ml-1 w-5 h-5'> <IoIosAdd size={20} /> </button>
+<button onClick={removeRow} className='mt-2 bg-red-500 hover:bg-blue-700 text-white rounded w-5 h-5'> <IoIosRemove size={20} /></button>
+</div>
+
+
 </div>
       </Tabs.Item>
       <Tabs.Item title="Deying" icon={IoIosColorFill}>
