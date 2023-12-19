@@ -83,9 +83,12 @@ const customTheme = {
 
 function ProductionArticleTable() {
 
+    const [Total , setTotal] = useState(0);
+    const [Days , setDays] = useState(0);
+
     const params = useParams();
 
-     const data1 =  [{ value: 'A1' }, { value: 'B1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }];
+     const data1 =  [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }];
       
     const [data, setData] = useState([ ]);
   
@@ -128,11 +131,22 @@ function ProductionArticleTable() {
       const newData = [...data];
       newData.pop(); // Remove the last row
       setData(newData);
+
+      const totalSumDays = sumLastElement(newData);
+      const totalSum = sum2LastElement(newData);
+      setTotal(totalSum)
+      setDays(totalSumDays)
     }
   };
   
   const addRow = () => {
-    const numColumns = data[0].length; // Get the number of columns from the first row
+    if (!data || !data[0] || typeof data[0].length === 'undefined') {
+      // Handle the case where data is undefined or data[0] is undefined or data[0].length is undefined
+      setData( [data1]);
+      return;
+    }
+  
+    const numColumns = data[0].length;
     const newEmptyRow = Array.from({ length: numColumns }, () => ({ value: '' }));
     const newData = [...data, newEmptyRow];
     setData(newData);
@@ -142,10 +156,29 @@ function ProductionArticleTable() {
     console.log(data);
     addRecord(data);
   }
+
+  const sumLastElement = (array) => {
+    return array.map((row) => {
+      const lastElement = row[row.length - 1];
+      const value = parseInt(lastElement.value, 10) || 0; // Parse value as an integer (assuming values are numbers)
+      return value;
+    }).reduce((acc, curr) => acc + curr, 0);
+  };
+
+  const sum2LastElement = (array) => {
+    return array.map((row) => {
+      const lastElement = row[row.length - 2];
+      const value = parseInt(lastElement.value, 10) || 0; // Parse value as an integer (assuming values are numbers)
+      return value;
+    }).reduce((acc, curr) => acc + curr, 0);
+  };
+
   const handleChange = (changes) => {
     setData(changes);
- 
-   // addRecord(changes);
+    const totalSumDays = sumLastElement(changes);
+    const totalSum = sum2LastElement(changes);
+    setTotal(totalSum)
+    setDays(totalSumDays)
   };
 
   return (
@@ -253,7 +286,13 @@ function ProductionArticleTable() {
   onChange={handleChange}
   columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
 />
-<div className='flex justify-start'>
+<div className='flex justify-start mt-2 '>
+<h3 className='font-bold'>Total : <span>{Total}</span> </h3>
+</div>
+<div className='flex justify-start mt-2 '>
+<h3 className='font-bold'>Days : <span>{Days}</span> </h3>
+</div>
+<div className='flex justify-start  mt-2'>
 <button onClick={addRow} className='mt-2 bg-blue-500 hover:bg-blue-700 text-white rounded mr-1 ml-1 w-5 h-5'> <IoIosAdd size={20} /> </button>
 <button onClick={removeRow} className='mt-2 bg-red-500 hover:bg-blue-700 text-white rounded w-5 h-5'> <IoIosRemove size={20} /></button>
 </div>
@@ -275,7 +314,7 @@ function ProductionArticleTable() {
 
 <Spreadsheet
   data={data}
-  onChange={handleChange}
+ 
   columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
 />
 <div className='flex justify-start'>
@@ -299,7 +338,7 @@ function ProductionArticleTable() {
 
 <Spreadsheet
   data={data}
-  onChange={handleChange}
+ 
   columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
 />
 <div className='flex justify-start'>
@@ -323,7 +362,7 @@ function ProductionArticleTable() {
 
 <Spreadsheet
   data={data}
-  onChange={handleChange}
+ 
   columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
 />
 <div className='flex justify-start'>
@@ -347,7 +386,7 @@ function ProductionArticleTable() {
 
 <Spreadsheet
   data={data}
-  onChange={handleChange}
+
   columnLabels={['P 1', 'P 2', 'P 3', 'Fabric', 'Article', 'PR Suit', 'Stiches', 'Head', 'Round', 'C/Rate', 'Y/M', 'Round Final', 'Quantity', 'T.Stitch', 'Days']}
 />
 <div className='flex justify-start'>
