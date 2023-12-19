@@ -4,7 +4,12 @@ import "./App.css";
 import Index from "./pages/Home/Index";
 import ProductionIndex from "./pages/ProductionDepartment/Index";
 import Menu from "./pages/PunchingDepartment/Menu";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Production from "./pages/PunchingDepartment/Production/Production";
 import Sampling from "./pages/PunchingDepartment/Sampling/Sampling";
@@ -18,6 +23,7 @@ import CuttingArticleId from "./pages/CuttingDepartment/CuttingArticleId";
 import Cropping from "./pages/CroppingDepartment/Cropping";
 import Finishing from "./pages/FinishingDepartment/Finishing";
 import { setTheme } from "flowbite-react/lib/esm/theme-store";
+import ProductionArticleTable from "./pages/PunchingDepartment/Production/ProductionArticleTable";
 function App() {
   useEffect(() => {
     // Force light mode
@@ -55,8 +61,12 @@ function App() {
                   element={<SamplingArticle />}
                 />
                 <Route
-                  path="/Punching/Production/Article"
+                  path="/Punching/Production/Article/:key"
                   element={<ProductionArticle />}
+                />
+                <Route
+                  path="/Punching/Production/Article/Table/:key/:title"
+                  element={<ProductionArticleTable />}
                 />
               </Routes>
             </div>
