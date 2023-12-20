@@ -7,7 +7,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { Button, Checkbox, Label, Modal, TextInput} from 'flowbite-react';
 import axios from 'axios';
 import {Route, Link, Routes, useParams} from 'react-router-dom';
-
+const API_URL = process.env.REACT_APP_API_URL;
 
 const ProductionArticle = () => {
 
@@ -41,7 +41,7 @@ const ProductionArticle = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:9000/api/punching/production/article', {
+      const response = await axios.post(`${API_URL}/api/punching/production/article`, {
         data: {
           title: title,
           key: decodeURIComponent(params.key)
@@ -60,7 +60,7 @@ const ProductionArticle = () => {
     setTitle("D#");
     const getProduction = async () => {
       try {
-        const response = await axios.get('http://localhost:9000/api/punching/production/article/'+encodeURIComponent(params.key));
+        const response = await axios.get(`${API_URL}/api/punching/production/article/`+encodeURIComponent(params.key));
          setProductionData(response.data.data[0][decodeURIComponent(params.key)]);
       } catch (error) {
         console.error(error);

@@ -17,8 +17,7 @@ import Spreadsheet from 'react-spreadsheet';
 
 import {Route, Link, Routes, useParams} from 'react-router-dom';
 import axios from 'axios';
-import { HiAdjustments, HiCloudDownload, HiUserCircle } from 'react-icons/hi';
-
+const API_URL = process.env.REACT_APP_API_URL;
 
 const customTheme = {
   
@@ -95,7 +94,7 @@ function ProductionArticleTable() {
 
     const addRecord = async (value) => {
         try {
-          const response = await axios.post('http://localhost:9000/api/punching/production/article/table', {
+          const response = await axios.post(`${API_URL}/api/punching/production/article/table`, {
             data: {
               title: decodeURIComponent(params.title),
               key: decodeURIComponent(params.key),
@@ -112,11 +111,16 @@ function ProductionArticleTable() {
     useEffect(() => {
         const getProduction = async () => {
           try {
-            const response = await axios.get('http://localhost:9000/api/punching/production/article/'+encodeURIComponent(params.key)+"/"+encodeURIComponent(params.title));
+            const response = await axios.get(`${API_URL}/api/punching/production/article/`+encodeURIComponent(params.key)+"/"+encodeURIComponent(params.title));
           //  console.log(Array.isArray(response.data.data[0].value));
 
             setData(Array.isArray(response.data.data[0].value)==false ? [data1] :  response.data.data[0].value);
-  
+
+            const totalSumDays = sumLastElement(Array.isArray(response.data.data[0].value)==false ? [data1] :  response.data.data[0].value);
+            const totalSum = sum2LastElement(Array.isArray(response.data.data[0].value)==false ? [data1] :  response.data.data[0].value);
+            setTotal(totalSum)
+            setDays(totalSumDays)
+
           } catch (error) {
             console.error(error);
           }

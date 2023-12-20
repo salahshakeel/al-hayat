@@ -7,6 +7,8 @@ import { CiCirclePlus } from "react-icons/ci";
 import { Button, Checkbox, Label, Modal, TextInput} from 'flowbite-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Production = () => {
   
   const [openModal, setOpenModal] = useState(false);
@@ -31,7 +33,7 @@ const Production = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:9000/api/punching/production', {
+      const response = await axios.post(`${API_URL}/api/punching/production`, {
         data: {
           title: title
         }
@@ -47,7 +49,7 @@ const Production = () => {
     setTitle("B#");
     const getProduction = async () => {
       try {
-        const response = await axios.get('http://localhost:9000/api/punching/production');
+        const response = await axios.get(`${API_URL}/api/punching/production`);
         setProductionData(response.data.data[0].production);
       
       } catch (error) {
