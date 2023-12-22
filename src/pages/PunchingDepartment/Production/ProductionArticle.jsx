@@ -122,7 +122,7 @@ const ProductionArticle = () => {
 
  {Object.keys(productionData).map((key, index) => (
   
-        <Card key={index} value={key} url={`/Punching/Production/Article/Table/${ encodeURIComponent(params.key)}/${encodeURIComponent(key)}`}  />
+        <Card key={index} value={key} url={`/Punching/Production/Article/${ encodeURIComponent(params.key)}/${encodeURIComponent(key)}`}  />
       ))}
   </div>
   </div>
