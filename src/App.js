@@ -65,7 +65,7 @@ function App() {
                   element={<ProductionArticle />}
                 />
                 <Route
-                  path="/Punching/Production/Article/Table/:key/:title"
+                  path="/Punching/Production/Article/:key/:title"
                   element={<ProductionArticleTable />}
                 />
               </Routes>
