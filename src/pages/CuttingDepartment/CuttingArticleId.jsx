@@ -31,7 +31,32 @@ function CuttingArticleId() {
    const data1 =  [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }];
     
   const [data, setData] = useState([ ]);
-  const [getCutting, setGetCutting] = useState([]);
+  const [getCuttingData, setGetCutting] = useState({
+    "Required": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Market": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Reject": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Total": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    }
+  });
 
 
   useEffect(() => {
@@ -76,8 +101,37 @@ function CuttingArticleId() {
   }, []);
 
 
+  
+  const handleInputChange = (category, property, value) => {
+    setGetCutting(prevData => ({
+      ...prevData,
+      [category]: {
+        ...prevData[category],
+        [property]: value,
+      },
+    }));
+  };
+
+  const handleSaveClick = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/api/cutting/${encodeURIComponent(params.key)}/${encodeURIComponent(params.title)}`, getCuttingData);
+      
+      // Check the response and handle accordingly
+      if (response.data && response.data.message) {
+        alert(response.data.message); // Success message from the server
+      } else {
+        console.log('Unexpected response:', response);
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+      // Handle error appropriately, e.g., show an error message to the user
+    }
+  };
+
   return (
   
+
+    console.log(getCuttingData),
   
     <div>
         <SubHeading title={params.key+' - '+params.title} />
@@ -259,62 +313,44 @@ function CuttingArticleId() {
           </div> 
 
 
+<Button onClick={handleSaveClick} className='flex justify-left mt-2 mb-2 bg-blue-500 hover:bg-blue-700 text-white rounded w-20 h-10'>save</Button>
 
 
 
-
-{/* <div className='mt-10'>
-  <Table >
-
-
-          <Table.Head>
+{getCuttingData ? (
+  <div className='mt-10'>
+    <Table>
+           <Table.Head>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'></Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>KAPRA</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>NET</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>MALAI</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>ORGANZA</Table.HeadCell>
  </Table.Head>
- 
+    <Table.Body className="divide-y">
+      {["Required", "Market", "Reject", "Total"].map((category, index) => (
+        <Table.Row key={index} className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">{category}</Table.Cell>
 
-<Table.Body className="divide-y">
-
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REQUIRED</Table.Cell>
-
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 '  type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Required"]["NET"]}  /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Required"]["MALAI"]} /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number"  /></Table.Cell>
-       
-      
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">MARKET</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Market"]["KAPRA"]} type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["NET"]}  /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["MALAI"]} /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["ORGANZA"]} /></Table.Cell>
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REJECT</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Reject"]["KAPRA"]} type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["NET"]}  /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["MALAI"]} /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["ORGANZA"]} /></Table.Cell>
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">TOTAL</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Total"]["KAPRA"]} type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["NET"]}  /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["MALAI"]} /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["ORGANZA"]} /></Table.Cell>
-       </Table.Row>
-   
+          {getCuttingData[category] && Object.keys(getCuttingData[category]).map((property, propIndex) => (
+            <Table.Cell key={propIndex} className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
+              <input
+                className='h-10 w-30 border border-gray-300'
+                type="number"
+                value={getCuttingData[category][property]}
+                onChange={(e) => handleInputChange(category, property, e.target.value)}
+              />
+            </Table.Cell>
+          ))}
+        </Table.Row>
+      ))}
+    </Table.Body>
+    </Table>
+  </div>
+) : <></>}
 
 
-</Table.Body>
-</Table>
-</div> */}
+
             
     </div>
   )

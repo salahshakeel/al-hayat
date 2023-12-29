@@ -34,6 +34,34 @@ function MarketReceivedTable() {
   const [inputYard, setinputYard] = useState();
   const [inputQuantity, setinputQuantity] = useState();
 
+
+  const [getCuttingData, setGetCutting] = useState({
+    "Required": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Market": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Reject": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    },
+    "Total": {
+      "KAPRA": "",
+      "NET": "",
+      "MALAI": "",
+      "ORGANZA": ""
+    }
+  });
+
   const fetchBookNo = (inputValue) => {
     return axios.get(`${API_URL}/api/punching/production`).then((result) => {
       const allProducts = result.data.data[0].production;
@@ -103,6 +131,20 @@ function MarketReceivedTable() {
 
   const [data, setData] = useState([]);
 
+
+  const getCutting = async (key,title) => {
+    try {
+  
+      const response = await axios.get(`${API_URL}/api/cutting/`+encodeURIComponent(key)+"/"+encodeURIComponent(title));
+    
+
+    setGetCutting(response.data.data[title]);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const getMarket = async () => {
       try {
@@ -114,10 +156,14 @@ function MarketReceivedTable() {
     };
 
     getMarket();
+  
   }, []);
 
 
+
+
   const submitData = async () => {
+    
     try {
       const data = {
         "B#": selectedValue.value,
@@ -136,6 +182,11 @@ function MarketReceivedTable() {
       console.error(error);
     }
   };
+
+
+  const handleCuttingData = ()=>{
+    getCutting(selectedValue.value,selecteddesignNumber);
+  }
 
   return (
     <div>
@@ -238,7 +289,7 @@ function MarketReceivedTable() {
 
 
 <div className='flex  justify-end'>
-<Datepicker  className='h-20' />
+
   <SearchInput/>
     </div>
     
@@ -266,56 +317,83 @@ function MarketReceivedTable() {
 </div>
 
 
-
 <div className='mt-10'>
-  <Table >
+  <Table>
+<Table.Body className="divide-y">
+   <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+     
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
+     <AsyncSelect
+     required
+        cacheOptions
+        placeholder="Select B#"
+        defaultOptions
+        value={selectedValue}
+        getOptionValue={getOptionValue}
+        getOptionLabel={getOptionLabel}
+        loadOptions={(inputValue) => fetchBookNo(inputValue)}
+        onInputChange={handleInputChange}
+        onChange={handleChange}
+      />
+     </Table.Cell>
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
+  <select required onChange={(e) => selectDesignNoValue(e.target.value)} className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:border-blue-500 block w-full p-2.5 '>
+    <option key="default" value="" className='text-black'>
+      Select D#
+    </option>
+    {items2.map((element, index) => (
+    
+      <option className='text-black' key={`option_${index}`} value={Object.keys(element)[0]}>
+        {Object.keys(element)[0]}
+      </option>
+    ))}
+  </select>
+</Table.Cell>
 
+     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"> <Button onClick={handleCuttingData} className='flex justify-left mt-2 mb-2 bg-blue-600 dark:bg-blue-600 hover:bg-blue-700 text-white rounded w-20 h-10'>Filter</Button>
+</Table.Cell>
 
-          <Table.Head>
+    
+     
+   </Table.Row>
+ 
+ </Table.Body>
+ </Table>
+
+ 
+</div>
+
+{getCuttingData ? (
+  <div className='mt-10'>
+    <Table>
+           <Table.Head>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'></Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>KAPRA</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>NET</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>MALAI</Table.HeadCell>
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>ORGANZA</Table.HeadCell>
  </Table.Head>
- 
+    <Table.Body className="divide-y">
+      {["Required", "Market", "Reject", "Total"].map((category, index) => (
+        <Table.Row key={index} className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">{category}</Table.Cell>
 
-<Table.Body className="divide-y">
-
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REQUIRED</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">MARKET</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REJECT</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-       </Table.Row>
-       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">TOTAL</Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input type="number" /></Table.Cell>
-       </Table.Row>
-   
-
-
-</Table.Body>
-</Table>
-</div>
+          {getCuttingData[category] && Object.keys(getCuttingData[category]).map((property, propIndex) => (
+            <Table.Cell key={propIndex} className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
+              <input
+                className='h-10 w-30 border border-gray-300'
+                type="number"
+                value={getCuttingData[category][property]}
+                disabled
+              />
+            </Table.Cell>
+          ))}
+        </Table.Row>
+      ))}
+    </Table.Body>
+    </Table>
+  </div>
+) : <></>}
 
 
 
