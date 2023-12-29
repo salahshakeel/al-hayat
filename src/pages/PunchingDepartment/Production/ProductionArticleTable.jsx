@@ -187,9 +187,9 @@ function ProductionArticleTable() {
 
   return (
     <div>
-        <SubHeading title={'Cutting '+params.key} />
+        <SubHeading title={params.key+' - '+params.title} />
 
-        <h2 class="text-4xl font-bold dark:text-black mb-4">{params.title}</h2>
+        <h2 class="text-4xl font-bold dark:text-black mb-4"></h2>
 
 
 
@@ -275,7 +275,7 @@ function ProductionArticleTable() {
 
             <div id='market' className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Market</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">Production</h2>
 
 
 <div className='flex justify-center'>
@@ -304,7 +304,7 @@ function ProductionArticleTable() {
 
           </div>
 
-          <div id='deying' className="overflow-x-auto mt-5">
+          {/* <div id='deying' className="overflow-x-auto mt-5">
 
 <h2 class="text-4xl font-bold dark:text-black mb-4">Deying</h2>
 
@@ -400,7 +400,7 @@ function ProductionArticleTable() {
 
 
           </div>
-          
+           */}
 
 
       

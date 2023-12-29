@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import SubHeading from '../../components/SubHeading'
 import Card from '../../components/Card'
 import LinkButton from '../../components/LinkButton'
@@ -14,107 +14,77 @@ import { IoIosAdd, IoIosColorFill, IoIosRemove } from 'react-icons/io';
 import { MdDashboard } from 'react-icons/md';
 import SearchInput from '../../components/SearchInput'
 import Spreadsheet from 'react-spreadsheet';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-
-
-const customTheme = {
-  
-    "base": "flex flex-col gap-2",
-    "tablist": {
-      "base": "flex text-center",
-      "styles": {
-        "default": "flex-wrap border-b border-gray-200 dark:border-gray-700",
-        "underline": "flex-wrap -mb-px border-b border-gray-200 dark:border-gray-700",
-        "pills": "flex-wrap font-medium text-sm text-gray-500 dark:text-gray-400 space-x-2",
-        "fullWidth": "w-full text-sm font-medium divide-x divide-gray-200 shadow grid grid-flow-col dark:divide-gray-700 dark:text-gray-400 rounded-none"
-      },
-      "tabitem": {
-        "base": "flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500  focus:outline-none",
-        "styles": {
-          "default": {
-            "base": "rounded-t-lg",
-            "active": {
-              "on": "bg-gray-100 text-cyan-600 dark:bg-gray-800 dark:text-cyan-500",
-              "off": "text-gray-500 hover:bg-gray-50 hover:text-gray-600 dark:text-gray-400 dark:hover:bg-gray-800  dark:hover:text-gray-300"
-            }
-          },
-          "underline": {
-            "base": "rounded-t-lg",
-            "active": {
-              "on": "text-cyan-600 rounded-t-lg border-b-2 border-cyan-600 active dark:text-cyan-500 dark:border-cyan-500",
-              "off": "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
-            }
-          },
-          "pills": {
-            "base": "",
-            "active": {
-              "on": "rounded-lg bg-cyan-600 text-white",
-              "off": "rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
-            }
-          },
-          "fullWidth": {
-            "base": "ml-0 first:ml-0 w-full rounded-none flex",
-            "active": {
-              "on": "p-4 text-gray-900 bg-gray-100 active dark:bg-gray-700 dark:text-white rounded-none",
-              "off": "bg-white hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700 rounded-none"
-            }
-          }
-        },
-        "icon": "mr-2 h-5 w-5"
-      }
-    },
-    "tabitemcontainer": {
-      "base": "",
-      "styles": {
-        "default": "",
-        "underline": "",
-        "pills": "",
-        "fullWidth": ""
-      }
-    },
-    "tabpanel": "py-3"
-  
-};
-
+const API_URL = process.env.REACT_APP_API_URL;
 
 
 function CuttingArticleId() {
 
+  const params = useParams();
 
-  const [data, setData] = useState([
-    [{ value: 'A1' }, { value: 'B1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }],
-    [{ value: 'A2' }, { value: 'B2' }, { value: 'C2' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }, { value: 'C1' }],
-    // Add more rows as needed
-  ]);
-  
-  const removeRow = () => {
-    if (data.length > 0) {
-      const newData = [...data];
-      newData.pop(); // Remove the last row
-      setData(newData);
-    }
-  };
-  
-  const addRow = () => {
-    const numColumns = data[0].length; // Get the number of columns from the first row
-    const newEmptyRow = Array.from({ length: numColumns }, () => ({ value: '' }));
-    const newData = [...data, newEmptyRow];
-    setData(newData);
-  };
-  
-  const handleChange = (changes) => {
-    setData(changes);
-    console.log(changes);
-  };
+
+
+ 
+
+   const data1 =  [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }];
+    
+  const [data, setData] = useState([ ]);
+  const [getCutting, setGetCutting] = useState([]);
+
+
+  useEffect(() => {
+    const getProduction = async () => {
+      try {
+        const excludedIndices = [0, 1, 2, 5, 6, 9, 12, 13, 14];
+
+        const response = await axios.get(`${API_URL}/api/punching/production/article/`+encodeURIComponent(params.key)+"/"+encodeURIComponent(params.title));
+
+      const filterdata = response.data.data[0].value;
+
+      const spliceData = filterdata.map(element =>
+        element.filter((_, index) => !excludedIndices.includes(index))
+      );
+      
+        setData(Array.isArray(response.data.data[0].value)==false ? [data1] :  spliceData);
+
+     
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const getCutting = async () => {
+      try {
+    
+        const response = await axios.get(`${API_URL}/api/cutting/`+encodeURIComponent(params.key)+"/"+encodeURIComponent(params.title));
+      console.log(response.data.data[params.title]); 
+
+      setGetCutting(response.data.data[params.title]);
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+
+
+    getProduction();
+    getCutting();
+  }, []);
+
 
   return (
+  
+  
     <div>
-        <SubHeading title={'Cutting B#0001'} />
+        <SubHeading title={params.key+' - '+params.title} />
 
-        <h2 class="text-4xl font-bold dark:text-black mb-4">D#0001</h2>
+     
 
-
-        
+{/*         
     <Tabs theme={customTheme} className='justify-center'  aria-label="Tabs with icons" style="underline">
       <Tabs.Item active title="Market" icon={CiShop} className='dark:text-black dark:bg-white'>
       <div className="overflow-x-auto mt-5">
@@ -264,29 +234,87 @@ function CuttingArticleId() {
   </Table>
 </div>
       </Tabs.Item>
-    </Tabs>
+    </Tabs> */}
 
+<div id='market' className="overflow-x-auto mt-5">
+
+<h2 class="text-4xl font-bold dark:text-black mb-4">Production</h2>
+
+
+<div className='flex justify-center'>
+<SearchInput/>
+
+</div>
+
+
+<Spreadsheet
+  data={data}
+
+  columnLabels={['Fabric', 'Article', 'Head', 'Round', 'Y/M', 'Round Final']}
+/>
+
+
+
+
+          </div> 
+
+
+
+
+
+
+{/* <div className='mt-10'>
+  <Table >
+
+
+          <Table.Head>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'></Table.HeadCell>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>KAPRA</Table.HeadCell>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>NET</Table.HeadCell>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>MALAI</Table.HeadCell>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>ORGANZA</Table.HeadCell>
+ </Table.Head>
+ 
+
+<Table.Body className="divide-y">
+
+       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REQUIRED</Table.Cell>
+
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 '  type="number" /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Required"]["NET"]}  /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Required"]["MALAI"]} /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number"  /></Table.Cell>
        
-        {/* <div class="flex gap-2 justify-center gird grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+      
+       </Table.Row>
+       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">MARKET</Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Market"]["KAPRA"]} type="number" /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["NET"]}  /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["MALAI"]} /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Market"]["ORGANZA"]} /></Table.Cell>
+       </Table.Row>
+       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">REJECT</Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Reject"]["KAPRA"]} type="number" /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["NET"]}  /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["MALAI"]} /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Reject"]["ORGANZA"]} /></Table.Cell>
+       </Table.Row>
+       <Table.Row className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">TOTAL</Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' value={getCutting["Total"]["KAPRA"]} type="number" /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["NET"]}  /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["MALAI"]} /></Table.Cell>
+         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black"><input className='h-10 w-30 border border-gray-300 ' type="number" value={getCutting["Total"]["ORGANZA"]} /></Table.Cell>
+       </Table.Row>
+   
 
-            
-                    <LinkButton buttonName={'Market'} icon={<CiShop size={30} />}  />
-    
-                    <LinkButton buttonName={'Deying'} icon={<IoIosColorFill size={30} />} />
 
-                    <LinkButton buttonName={'Cutting'} icon={<FaCut size={30} />}  />
-    
-                   <LinkButton buttonName={'ShortFall'} icon={<FaArrowDownShortWide size={30} />}   />
-
-                   <LinkButton buttonName={'Extra'} icon={<CiCirclePlus size={30} />} />
-         
-            </div>
-
-
-            <div class="flex  items-center justify-center flex-col md:flex-row gap-4 mt-5  ">
-            
-            </div> */}
-
+</Table.Body>
+</Table>
+</div> */}
             
     </div>
   )

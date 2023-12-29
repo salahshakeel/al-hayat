@@ -24,6 +24,7 @@ import Cropping from "./pages/CroppingDepartment/Cropping";
 import Finishing from "./pages/FinishingDepartment/Finishing";
 import { setTheme } from "flowbite-react/lib/esm/theme-store";
 import ProductionArticleTable from "./pages/PunchingDepartment/Production/ProductionArticleTable";
+import MarketReceivedTable from "./pages/MarketReceived/MarketReceivedTable";
 function App() {
   useEffect(() => {
     // Force light mode
@@ -44,9 +45,9 @@ function App() {
               <Routes>
                 <Route path="/" exact element={<Index />} />
                 <Route path="/Cutting" element={<Cutting />} />
-                <Route path="/Cutting/Article" element={<CuttingArticle />} />
+                <Route path="/Cutting/Article/:key" element={<CuttingArticle />} />
                 <Route
-                  path="/Cutting/Article/Id"
+                  path="/Cutting/Article/:key/:title"
                   element={<CuttingArticleId />}
                 />
                 <Route path="/Punching" element={<Menu />} />
@@ -67,6 +68,11 @@ function App() {
                 <Route
                   path="/Punching/Production/Article/:key/:title"
                   element={<ProductionArticleTable />}
+                />
+
+                <Route
+                  path="/MarketReceived"
+                  element={<MarketReceivedTable />}
                 />
               </Routes>
             </div>

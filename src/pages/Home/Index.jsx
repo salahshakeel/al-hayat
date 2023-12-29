@@ -22,6 +22,13 @@ const Index = () => {
           icon={<img src="/Images/punching.png" alt="punching" width={50} height={50} />}
         />
 
+<LinkButton
+          url={'/MarketReceived'}
+          buttonName={'Market Received'}
+          icon={<img src="/Images/punching.png" alt="Market Received" width={50} height={50} />}
+        />
+
+
         <LinkButton
           buttonName={'Cutting Department'}
           url={'/Cutting'}
@@ -29,17 +36,23 @@ const Index = () => {
         />
         <LinkButton url={'/Production'} buttonName={'Production Department'} icon={<img src="/Images/production.png" alt="production" width={50} height={50} />} />
 
-        <LinkButton buttonName={'Cropping Department'} url={'/Cropping'} icon={<img src="/Images/cropping.png" alt="cropping" width={50} height={50} />} />
-      </div>
+        </div>
 
       <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-5">
+
+      <LinkButton buttonName={'Cropping Department'} url={'/Cropping'} icon={<img src="/Images/cropping.png" alt="cropping" width={50} height={50} />} />
+     
         <LinkButton buttonName={'Finishing Department'} url={'/Finishing'} icon={<img src="/Images/finishing.png" alt="finishing" width={50} height={50} />} />
 
         <LinkButton buttonName={'Market Department'} icon={<img src="/Images/market.png" alt="market" width={50} height={50} />} />
 
         <LinkButton buttonName={'Percuiment Department'} icon={<img src="/Images/procurement.png" alt="percuiment" width={50} height={50} />} />
 
-        <LinkButton buttonName={'Gate Exit Department'} icon={<img src="/Images/exit.png" alt="exit" width={50} height={50} />} />
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-5">
+      <LinkButton buttonName={'Gate Exit Department'} icon={<img src="/Images/exit.png" alt="exit" width={50} height={50} />} />
+    
       </div>
     </div>
   );
