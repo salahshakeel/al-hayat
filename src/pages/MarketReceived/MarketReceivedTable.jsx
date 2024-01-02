@@ -188,6 +188,17 @@ function MarketReceivedTable() {
     getCutting(selectedValue.value,selecteddesignNumber);
   }
 
+
+  const calculateTotal = (property, getCuttingData) => {
+    // Sum the numeric values from other categories
+    const total = ["Required", "Market", "Reject"].reduce((acc, category) => {
+      const value = getCuttingData[category] ? parseFloat(getCuttingData[category][property]) || 0 : 0;
+      return acc + value;
+    }, 0);
+  
+    return total;
+  };
+
   return (
     <div>
     <SubHeading title={'Daily Market Received' } />
@@ -296,6 +307,13 @@ function MarketReceivedTable() {
 
 
 <Table>
+<Table.Head>
+ <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>B#</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>D#</Table.HeadCell> 
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Fabric</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Yard</Table.HeadCell>
+   <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>Quantity</Table.HeadCell>
+ </Table.Head>
 
  <Table.Body className="divide-y">
 
@@ -383,7 +401,7 @@ function MarketReceivedTable() {
               <input
                 className='h-10 w-30 border border-gray-300'
                 type="number"
-                value={getCuttingData[category][property]}
+                value={category === "Total" ? calculateTotal(property,getCuttingData) : getCuttingData[category][property]}
                 disabled
               />
             </Table.Cell>

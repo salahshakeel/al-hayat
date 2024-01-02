@@ -7,13 +7,11 @@ import { FaCut } from "react-icons/fa";
 import { CiShop } from "react-icons/ci";
 
 import { FaArrowDownShortWide } from "react-icons/fa6";
-import { Table ,TextInput,Button} from 'flowbite-react';
-import { Tabs } from 'flowbite-react';
-
+import { Modal,Button} from 'flowbite-react';
 import { IoIosAdd, IoIosColorFill, IoIosRemove } from 'react-icons/io';
-import { MdDashboard } from 'react-icons/md';
 import SearchInput from '../../../components/SearchInput'
 import Spreadsheet from 'react-spreadsheet';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 import {Route, Link, Routes, useParams} from 'react-router-dom';
 import axios from 'axios';
@@ -84,11 +82,9 @@ function ProductionArticleTable() {
 
     const [Total , setTotal] = useState(0);
     const [Days , setDays] = useState(0);
-
+    const [openModal, setOpenModal] = useState(false);
     const params = useParams();
-
      const data1 =  [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }];
-      
     const [data, setData] = useState([ ]);
   
 
@@ -140,6 +136,8 @@ function ProductionArticleTable() {
       const totalSum = sum2LastElement(newData);
       setTotal(totalSum)
       setDays(totalSumDays)
+
+      setOpenModal(false)
     }
   };
   
@@ -187,6 +185,29 @@ function ProductionArticleTable() {
 
   return (
     <div>
+
+
+<Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+        <Modal.Header className='dark:bg-white dark:text-black'  />
+        <Modal.Body className='dark:bg-white dark:text-black'>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-black" />
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Are you sure you want to remove this record?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="failure" onClick={() => removeRow()}>
+                {"Yes, I'm sure"}
+              </Button>
+              <Button color="gray" onClick={() => setOpenModal(false)}>
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+
         <SubHeading title={params.key+' - '+params.title} />
 
         <h2 class="text-4xl font-bold dark:text-black mb-4"></h2>
@@ -298,7 +319,7 @@ function ProductionArticleTable() {
 </div>
 <div className='flex justify-start  mt-2'>
 <button onClick={addRow} className='mt-2 bg-blue-500 hover:bg-blue-700 text-white rounded mr-1 ml-1 w-5 h-5'> <IoIosAdd size={20} /> </button>
-<button onClick={removeRow} className='mt-2 bg-red-500 hover:bg-blue-700 text-white rounded w-5 h-5'> <IoIosRemove size={20} /></button>
+<button onClick={() => setOpenModal(true)} className='mt-2 bg-red-500 hover:bg-blue-700 text-white rounded w-5 h-5'> <IoIosRemove size={20} /></button>
 </div>
 
 

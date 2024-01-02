@@ -1,13 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import SubHeading from '../../components/SubHeading'
-import Card from '../../components/Card'
-import LinkButton from '../../components/LinkButton'
-import { CiCirclePlus } from "react-icons/ci";
-import { FaCut } from "react-icons/fa";
-import { CiShop } from "react-icons/ci";
 
-import { FaArrowDownShortWide } from "react-icons/fa6";
-import { Table ,TextInput,Button} from 'flowbite-react';
+import { Table,Button} from 'flowbite-react';
 import { Tabs } from 'flowbite-react';
 import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
 import { IoIosAdd, IoIosColorFill, IoIosRemove } from 'react-icons/io';
@@ -24,9 +18,6 @@ function CuttingArticleId() {
 
   const params = useParams();
 
-
-
- 
 
    const data1 =  [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }];
     
@@ -109,6 +100,7 @@ function CuttingArticleId() {
         ...prevData[category],
         [property]: value,
       },
+      
     }));
   };
 
@@ -127,6 +119,17 @@ function CuttingArticleId() {
       // Handle error appropriately, e.g., show an error message to the user
     }
   };
+
+  const calculateTotal = (property, getCuttingData) => {
+    // Sum the numeric values from other categories
+    const total = ["Required", "Market", "Reject"].reduce((acc, category) => {
+      const value = getCuttingData[category] ? parseFloat(getCuttingData[category][property]) || 0 : 0;
+      return acc + value;
+    }, 0);
+  
+    return total;
+  };
+  
 
   return (
   
@@ -292,7 +295,7 @@ function CuttingArticleId() {
 
 <div id='market' className="overflow-x-auto mt-5">
 
-<h2 class="text-4xl font-bold dark:text-black mb-4">Production</h2>
+<h2 class="text-4xl font-bold dark:text-black mb-4">Cutting</h2>
 
 
 <div className='flex justify-center'>
@@ -328,22 +331,22 @@ function CuttingArticleId() {
  <Table.HeadCell className='dark:bg-gray-400 dark:text-black'>ORGANZA</Table.HeadCell>
  </Table.Head>
     <Table.Body className="divide-y">
-      {["Required", "Market", "Reject", "Total"].map((category, index) => (
-        <Table.Row key={index} className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">{category}</Table.Cell>
-
-          {getCuttingData[category] && Object.keys(getCuttingData[category]).map((property, propIndex) => (
-            <Table.Cell key={propIndex} className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
-              <input
-                className='h-10 w-30 border border-gray-300'
-                type="number"
-                value={getCuttingData[category][property]}
-                onChange={(e) => handleInputChange(category, property, e.target.value)}
-              />
-            </Table.Cell>
-          ))}
-        </Table.Row>
+    {["Required", "Market", "Reject", "Total"].map((category, index) => (
+    <Table.Row key={index} className="bg-white dark:border-gray-200 dark:bg-gray-300 dark:text-black">
+      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-black">{category}</Table.Cell>
+      {getCuttingData[category] && Object.keys(getCuttingData[category]).map((property, propIndex) => (
+        <Table.Cell key={propIndex} className="whitespace-nowrap font-medium text-gray-900 dark:text-black">
+          <input
+            disabled={category === "Total"}
+            className='h-10 w-30 border border-gray-300'
+            type="number"
+            value={category === "Total" ? calculateTotal(property,getCuttingData) : getCuttingData[category][property]}
+            onChange={(e) => handleInputChange(category, property, e.target.value)}
+          />
+        </Table.Cell>
       ))}
+    </Table.Row>
+  ))}
     </Table.Body>
     </Table>
   </div>
